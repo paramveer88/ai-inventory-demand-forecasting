@@ -1,0 +1,402 @@
+INFO:     Started server process [1181493]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:35406 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36240 - "GET /health HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:59002 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:59002 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:59004 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:59004 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:40604 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:40604 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:40616 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:40616 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37250 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37250 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37266 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37266 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42852 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42852 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42868 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42868 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42868 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42868 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42852 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42852 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49624 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49624 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49636 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49636 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49702 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49702 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49718 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:49718 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:35370 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:35370 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:35374 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:35374 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37304 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37304 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37314 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:37314 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54444 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:54452 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45346 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:45330 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d763881923022e2250e3a2 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d764121923022e2250e6b1 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767cd1923022e2250ed1c HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d21923022e2250ed1d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d41923022e2250ed1e HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767d71923022e2250ed1f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34294 - "GET /forecast?productId=69d767df1923022e2250ed20 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK
+/home/tdc21/Desktop/PROJECTSSSSSS/GUA_1/ml-service/venv/lib/python3.14/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:34298 - "GET /forecast?productId=69d767e71923022e2250ed21 HTTP/1.1" 200 OK

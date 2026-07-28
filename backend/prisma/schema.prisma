@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  category       String
+  orderItems     OrderItem[]
+  inventory      Inventory?
+  vendors        ProductVendor[]
+  forecasts      Forecast[]
+  forecastRuns   ForecastRun[]
+  createdAt      DateTime?       @default(now())
+  updatedAt      DateTime?       @updatedAt
+}
+
+model Order {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime    @default(now())
+  totalAmount Float
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String  @db.ObjectId
+  productId String  @db.ObjectId
+  quantity  Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Vendor {
+  id           String          @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  contactEmail String?
+  products     ProductVendor[]
+  createdAt    DateTime?        @default(now())
+}
+
+model ProductVendor {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  productId String  @db.ObjectId
+  vendorId  String  @db.ObjectId
+  price     Float
+  product   Product @relation(fields: [productId], references: [id])
+  vendor    Vendor  @relation(fields: [vendorId], references: [id])
+
+  @@unique([productId, vendorId])
+}
+
+model ForecastRun {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  productId    String     @db.ObjectId
+  createdAt    DateTime   @default(now())
+  modelVersion String     @default("1.0.0")
+  notes        String?
+  forecasts    Forecast[]
+  product      Product    @relation(fields: [productId], references: [id])
+}
+
+model Forecast {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  productId       String      @db.ObjectId
+  forecastRunId   String      @db.ObjectId
+  date            DateTime
+  predictedDemand Float
+  actualDemand    Float?
+  createdAt       DateTime    @default(now())
+  product         Product     @relation(fields: [productId], references: [id])
+  forecastRun     ForecastRun @relation(fields: [forecastRunId], references: [id])
+
+  @@index([productId, date])
+}
+
+model Inventory {
+  productId    String    @id @map("_id") @db.ObjectId
+  currentStock Int
+  reorderLevel Float     @default(0)
+  safetyStock  Float     @default(0)
+  leadTime     Int       @default(7)
+  updatedAt    DateTime? @updatedAt
+  product      Product   @relation(fields: [productId], references: [id])
+}
+

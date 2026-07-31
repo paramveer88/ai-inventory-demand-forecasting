@@ -57,4 +57,18 @@ export class InventoryController {
       res.status(500).json({ error: "Internal server error" });
     }
   }
+
+  async compareModels(req: Request, res: Response) {
+    try {
+      const productId = req.query.productId as string;
+      if (!productId) {
+        return res.status(400).json({ error: "productId is required" });
+      }
+      const comparison = await inventoryService.compareForecasts(productId);
+      res.json(comparison);
+    } catch (error) {
+      console.error("[compareModels] Error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
 }

@@ -4,13 +4,15 @@ import Products from "./components/Products";
 import Inventory from "./components/Inventory";
 import Orders from "./components/Orders";
 import Vendors from "./components/Vendors";
+import ForecastLab from "./components/ForecastLab";
 import { useTheme } from "./ThemeContext";
 import {
   LayoutDashboard,
   Package,
+  Home,
   Boxes,
   ClipboardList,
-  Building2,
+  LineChart,
   Settings,
   Zap,
 } from "lucide-react";
@@ -18,15 +20,17 @@ import {
 function App() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   const renderContent = () => {
     switch (activeTab) {
-      case "dashboard":  return <Dashboard />;
-      case "products":   return <Products />;
-      case "vendors":    return <Vendors />;
-      case "inventory":  return <Inventory />;
-      case "orders":     return <Orders />;
-      default:           return <Dashboard />;
+      case "dashboard":    return <Dashboard />;
+      case "products":     return <Products />;
+      case "vendors":      return <Vendors />;
+      case "inventory":    return <Inventory />;
+      case "orders":       return <Orders />;
+      case "forecastLab":  return <ForecastLab />;
+      default:             return <Dashboard />;
     }
   };
 
@@ -34,81 +38,92 @@ function App() {
     <div className="flex h-screen overflow-hidden" style={{ backgroundColor: "var(--page-bg)" }}>
       {/* ── Sidebar ────────────────────────────────────────────────── */}
       <aside
-        className="w-60 flex flex-col flex-shrink-0"
-        style={{
-          backgroundColor: "var(--sidebar-bg)",
-          borderRight: "1px solid var(--border)",
-        }}
+        className={`w-60 flex flex-col flex-shrink-0 border-r transition-colors duration-250 ${
+          isDark 
+            ? 'bg-[#111318] border-slate-900' 
+            : 'bg-white border-slate-200'
+        }`}
       >
-        {/* Logo */}
-        <div className="px-5 py-5" style={{ borderBottom: "1px solid var(--border)" }}>
-          <div className="flex items-center gap-2.5">
-            <div
-              className="w-7 h-7 rounded-lg flex items-center justify-center"
-              style={{ backgroundColor: "var(--accent)", boxShadow: "0 0 14px var(--accent-glow)" }}
-            >
-              <Zap className="w-3.5 h-3.5 text-white" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
-                SmartERP
-              </p>
-              <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>
-                AI Inventory System
-              </p>
-            </div>
+        {/* Logo Section */}
+        <div className="px-6 py-6 flex items-center gap-3">
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 shadow-[0_0_14px_rgba(245,158,11,0.4)]"
+            style={{ backgroundColor: "#f59e0b" }}
+          >
+            <Zap className="w-5 h-5 text-slate-950 fill-slate-950" />
+          </div>
+          <div>
+            <p className={`text-base font-extrabold tracking-tight leading-none ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              SmartERP
+            </p>
+            <p className={`text-[9px] font-bold tracking-widest mt-1.5 uppercase ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+              AI INVENTORY
+            </p>
           </div>
         </div>
 
-        {/* Nav */}
-        <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-          <p className="px-3 mb-2 text-[10px] font-medium uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-            Main
+        {/* Navigation Links */}
+        <nav className="flex-1 px-4 py-3 space-y-1.5 overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+          <p className={`px-3 mb-3.5 text-[9px] font-extrabold uppercase tracking-widest ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>
+            MAIN
           </p>
           <NavItem
             icon={<LayoutDashboard size={16} />}
             label="Dashboard"
             active={activeTab === "dashboard"}
             onClick={() => setActiveTab("dashboard")}
+            isDark={isDark}
           />
           <NavItem
             icon={<Package size={16} />}
             label="Products"
             active={activeTab === "products"}
             onClick={() => setActiveTab("products")}
+            isDark={isDark}
           />
           <NavItem
-            icon={<Building2 size={16} />}
+            icon={<Home size={16} />}
             label="Vendors"
             active={activeTab === "vendors"}
             onClick={() => setActiveTab("vendors")}
+            isDark={isDark}
           />
           <NavItem
             icon={<Boxes size={16} />}
             label="Inventory"
             active={activeTab === "inventory"}
             onClick={() => setActiveTab("inventory")}
+            isDark={isDark}
           />
           <NavItem
             icon={<ClipboardList size={16} />}
             label="Orders"
             active={activeTab === "orders"}
             onClick={() => setActiveTab("orders")}
+            isDark={isDark}
+          />
+          <NavItem
+            icon={<LineChart size={16} />}
+            label="Forecasting Lab"
+            active={activeTab === "forecastLab"}
+            onClick={() => setActiveTab("forecastLab")}
+            isDark={isDark}
           />
         </nav>
 
-        {/* Bottom */}
-        <div className="px-3 pb-4" style={{ borderTop: "1px solid var(--border)", paddingTop: "12px" }}>
+        {/* Bottom Footer Section */}
+        <div className="px-4 pb-6 space-y-4">
           <NavItem
             icon={<Settings size={16} />}
             label="Settings"
             onClick={() => {}}
+            isDark={isDark}
           />
 
-          {/* Theme toggle */}
-          <div className="flex items-center justify-between px-3 pt-3 mt-2" style={{ borderTop: "1px solid var(--border)" }}>
-            <span className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
-              {theme === "dark" ? "Dark" : "Light"}
+          {/* Theme toggle switch */}
+          <div className={`flex items-center justify-between px-3 pt-4 border-t ${isDark ? 'border-slate-900/60' : 'border-slate-100'}`}>
+            <span className={`text-[10px] font-bold uppercase tracking-wider ${isDark ? 'text-slate-600' : 'text-slate-400'}`}>
+              Theme
             </span>
             <button
               onClick={toggleTheme}
@@ -134,15 +149,23 @@ interface NavItemProps {
   label: string;
   active?: boolean;
   onClick: () => void;
+  isDark: boolean;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick }) => (
+const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick, isDark }) => (
   <button
     onClick={onClick}
-    className={`nav-item w-full text-left ${active ? "nav-item-active" : ""}`}
-    style={active ? {} : {}}
+    className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+      active
+        ? isDark
+          ? "bg-[#d97706]/10 border border-[#f59e0b]/30 text-[#f59e0b] shadow-[0_0_12px_rgba(245,158,11,0.03)]"
+          : "bg-[#fdf6e2] border border-[#b45309]/20 text-[#b45309]"
+        : isDark
+          ? "border border-transparent text-slate-400 hover:bg-slate-900/50 hover:text-white"
+          : "border border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-950"
+    }`}
   >
-    <span style={{ opacity: active ? 1 : 0.6 }}>{icon}</span>
+    <span className="flex-shrink-0">{icon}</span>
     {label}
   </button>
 );

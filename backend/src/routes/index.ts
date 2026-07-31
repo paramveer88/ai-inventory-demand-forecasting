@@ -64,6 +64,7 @@ router.post(
 router.get("/forecast", inventoryController.getForecast);
 router.get("/forecast/history", inventoryController.getForecastHistory);
 router.get("/forecast/seed-history", inventoryController.seedForecastHistory);
+router.get("/forecast/compare", inventoryController.compareModels);
 router.get("/recommendations", inventoryController.getRecommendations);
 
 router.post("/simulate-data", simulationController.simulate);

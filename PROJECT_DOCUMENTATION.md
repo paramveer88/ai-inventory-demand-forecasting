@@ -47,7 +47,61 @@ graph TD
 
 ---
 
-## 2. Database Models & Schema (`schema.prisma`)
+## 2. Directory & Folder Structure
+
+To help with review and development, here is the structured map of the codebase detailing critical business modules:
+
+```
+smarterp-root/
+├── backend/
+│   ├── prisma/
+│   │   └── schema.prisma         # Prisma Schema defining database collections (MongoDB)
+│   ├── src/
+│   │   ├── controllers/          # HTTP request handlers
+│   │   │   ├── import-export.controller.ts
+│   │   │   ├── inventory.controller.ts  # Adds model comparison endpoint
+│   │   │   ├── order.controller.ts
+│   │   │   ├── product.controller.ts
+│   │   │   ├── simulation.controller.ts
+│   │   │   └── vendor.controller.ts
+│   │   ├── services/             # Core business logic services
+│   │   │   ├── cron.service.ts   # Automated sales simulators
+│   │   │   ├── import-export.service.ts
+│   │   │   ├── inventory.service.ts     # Orchestrates comparative forecast flows
+│   │   │   ├── order.service.ts
+│   │   │   ├── product.service.ts
+│   │   │   └── simulation.service.ts
+│   │   ├── routes/
+│   │   │   └── index.ts          # Express endpoint mapping (/api/forecast/compare)
+│   │   └── index.ts              # Server bootstrapper & config loading
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── ml-service/
+│   ├── app.py                    # FastAPI server entrypoint (defines /ml/compare)
+│   ├── models.py                 # Multi-model core forecasting architectures
+│   └── requirements.txt          # Python dependencies
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/           # UI Components
+│   │   │   ├── Dashboard.tsx     # General operational timeline
+│   │   │   ├── ForecastLab.tsx   # Premium research visualizer lab
+│   │   │   ├── Inventory.tsx     # Stock control & ROP panel
+│   │   │   ├── Orders.tsx
+│   │   │   ├── Products.tsx
+│   │   │   └── Vendors.tsx
+│   │   ├── App.tsx               # Client router & navigation
+│   │   ├── api.ts                # Client API caller mappings
+│   │   ├── main.tsx
+│   │   └── index.css             # Unified dark glassmorphism styling
+│   ├── package.json
+│   └── tailwind.config.js
+```
+
+---
+
+## 3. Database Models & Schema (`schema.prisma`)
 
 The system utilizes MongoDB Atlas (cloud instance) as its database engine. Below is a detailed map of the collection models defined in `/backend/prisma/schema.prisma`.
 
@@ -67,7 +121,7 @@ The system utilizes MongoDB Atlas (cloud instance) as its database engine. Below
 
 ---
 
-## 3. API Routes and Services
+## 4. API Routes and Services
 
 ### Route Map (Exposed by Backend)
 
@@ -103,7 +157,7 @@ All backend endpoints are structured under `/api` in `backend/src/routes/index.t
 
 ---
 
-## 4. Business Logic Core
+## 5. Business Logic Core
 
 ### I. Automated Background Workers (`cron.service.ts`)
 When `ENABLE_CRON=true` is set in the `.env`, a background daemon schedules two tasks:
@@ -123,7 +177,7 @@ Orders are written using Prisma's transactional engine (`prisma.$transaction`). 
 
 ---
 
-## 5. Machine Learning & Forecasting Pipeline
+## 6. Machine Learning & Forecasting Pipeline
 
 The forecasting pipeline provides automated insights by combining Node.js data validation with Python mathematical regression.
 
@@ -159,7 +213,7 @@ Using predictions from the ML pipeline, the backend calculates operational thres
 
 ---
 
-## 6. Frontend Presentation & Dashboard
+## 7. Frontend Presentation & Dashboard
 
 The frontend acts as a command console displaying inventory health:
 *   **Strategic Demand Timeline**: Chart comparing actual historical sales (solid blue line) against predicted 30-day AI forecasts (dashed green line).
@@ -168,7 +222,7 @@ The frontend acts as a command console displaying inventory health:
 
 ---
 
-## 7. Configuration & Startup Guide
+## 8. Configuration & Startup Guide
 
 ### Prerequisites
 *   Node.js (v18+)

@@ -119,6 +119,30 @@ export const getForecastHistory = (productId: string) =>
   api.get<{ data: any[] }>(`/forecast/history?productId=${productId}`);
 export const seedForecastHistory = (days: number = 14) =>
   api.get(`/forecast/seed-history?days=${days}`);
+export interface CompareForecastResult {
+  productId: string;
+  historical_sales: HistoricalSale[];
+  models: {
+    model_key: string;
+    model_name: string;
+    status: string;
+    info: string;
+    next_30_days: number;
+    daily_predictions: DailyPrediction[];
+    metrics: {
+      mae: number;
+      rmse: number;
+      mape: number;
+      r2: number;
+    };
+    latency_ms: number;
+    trend: string;
+  }[];
+}
+
+export const getForecastComparison = (productId: string) =>
+  api.get<CompareForecastResult>(`/forecast/compare?productId=${productId}`);
+
 export const getRecommendations = (productId: string) =>
   api.get<Recommendation>(`/recommendations?productId=${productId}`);
 

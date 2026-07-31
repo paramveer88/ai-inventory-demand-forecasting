@@ -63,6 +63,7 @@ model ForecastRun {
   productId    String     @db.ObjectId
   createdAt    DateTime   @default(now())
   modelVersion String     @default("1.0.0")
+  modelName    String     @default("Linear Regression")
   notes        String?
   forecasts    Forecast[]
   product      Product    @relation(fields: [productId], references: [id])

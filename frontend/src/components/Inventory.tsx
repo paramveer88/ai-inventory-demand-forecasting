@@ -482,7 +482,7 @@ const Inventory = () => {
           return (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => setActiveCategory(cat || "All")}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                 isActive
                   ? (isDark 

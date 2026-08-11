@@ -5,6 +5,7 @@ import Inventory from "./components/Inventory";
 import Orders from "./components/Orders";
 import Vendors from "./components/Vendors";
 import ForecastLab from "./components/ForecastLab";
+import LandingPage from "./components/LandingPage";
 import { useTheme } from "./ThemeContext";
 import {
   LayoutDashboard,
@@ -18,9 +19,14 @@ import {
 } from "lucide-react";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("landing");
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+
+  // Landing page renders full-screen without the sidebar layout
+  if (activeTab === "landing") {
+    return <LandingPage onEnter={() => setActiveTab("dashboard")} />;
+  }
 
   const renderContent = () => {
     switch (activeTab) {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Connections from "./components/Connections";
 import Dashboard from "./components/Dashboard";
 import Products from "./components/Products";
 import Inventory from "./components/Inventory";
@@ -14,6 +15,7 @@ import {
   Boxes,
   ClipboardList,
   LineChart,
+  Cable,
   Settings,
   Zap,
 } from "lucide-react";
@@ -30,6 +32,7 @@ function App() {
 
   const renderContent = () => {
     switch (activeTab) {
+      case "connections": return <Connections />;
       case "dashboard":    return <Dashboard />;
       case "products":     return <Products />;
       case "vendors":      return <Vendors />;
@@ -113,6 +116,13 @@ function App() {
             label="Forecasting Lab"
             active={activeTab === "forecastLab"}
             onClick={() => setActiveTab("forecastLab")}
+            isDark={isDark}
+          />
+          <NavItem
+            icon={<Cable size={16} />}
+            label="Connections"
+            active={activeTab === "connections"}
+            onClick={() => setActiveTab("connections")}
             isDark={isDark}
           />
         </nav>

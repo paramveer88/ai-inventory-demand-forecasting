@@ -7,7 +7,7 @@ import { SimulationController } from "../controllers/simulation.controller.js";
 import { VendorController } from "../controllers/vendor.controller.js";
 import { ImportExportController } from "../controllers/import-export.controller.js";
 
-const router = Router();
+const router: Router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 const productController = new ProductController();

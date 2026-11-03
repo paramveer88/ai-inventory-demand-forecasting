@@ -1,5 +1,7 @@
 # 🚀 SmartERP AI - Intelligent Inventory & Demand Forecasting
 
+> **Quick start:** run `bash start.sh` from this folder. Your original landing page opens first, followed by the dashboard and all existing tabs. **Connections** is an additional sidebar tab. The launcher starts forecasting too, reuses your existing backend database configuration for the original app, and keeps experimental connection data in a separate local database. Press Ctrl+C to stop. Advanced instructions: [startup guide](docs/reference-integration.md).
+
 This is a full-stack "Mini ERP" system that uses Machine Learning to optimize supply chain management. It doesn't just track stock; it predicts the future.
 
 ## 🏗️ Technical Architecture

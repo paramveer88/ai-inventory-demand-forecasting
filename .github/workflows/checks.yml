@@ -1,0 +1,37 @@
+name: Checks
+on: [push, pull_request]
+jobs:
+  application:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: mongodb://127.0.0.1:27017/smarterp_test?directConnection=true&replicaSet=rs0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --frozen-lockfile
+        working-directory: backend
+      - run: pnpm typecheck && pnpm test
+        working-directory: backend
+      - run: pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm typecheck && pnpm build
+        working-directory: frontend
+      - run: pnpm exec playwright install --with-deps chromium
+        working-directory: frontend
+      - run: RUN_BROWSER_TESTS=1 bash scripts/test-integration.sh
+  ml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+        working-directory: ml-service
+      - run: python -m unittest discover -s tests -v
+        working-directory: ml-service

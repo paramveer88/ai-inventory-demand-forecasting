@@ -76,21 +76,10 @@ const MODEL_METADATA: Record<string, ModelMeta> = {
     strokeDash: "3 2",
     description: "Deep learning recurrent network with long-term memory.",
   },
-  tft: {
-    name: "TFT",
-    color: "#10b981",
-    strokeDash: "7 2",
-    description: "Transformer network for multi-horizon forecasting.",
-  },
-  timesfm: {
-    name: "TimesFM",
-    color: "#f59e0b",
-    strokeDash: "0",
-    description: "Google's pre-trained zero-shot foundation model.",
-  },
+
 };
 
-const MODEL_KEYS = ["lr", "xgboost", "lightgbm", "prophet", "lstm", "tft", "timesfm"];
+const MODEL_KEYS = ["lr", "xgboost", "lightgbm", "prophet", "lstm"];
 
 // ── Dashboard Component ────────────────────────────────────────────────────
 const Dashboard = () => {
@@ -311,8 +300,6 @@ const Dashboard = () => {
           value={inventory.reduce((acc, item) => acc + item.currentStock, 0).toLocaleString()}
           icon={<Database className="w-4 h-4" style={{ color: isDark ? "#7c5cfc" : "#2563eb" }} />}
           iconBg={isDark ? "rgba(124,92,252,0.1)" : "rgba(37,99,235,0.08)"}
-          trend="+4.2%"
-          trendUp
           delay="stagger-1"
           theme={theme}
           borderTopColor="border-t-amber-500"
@@ -346,11 +333,11 @@ const Dashboard = () => {
           borderTopColor="border-t-rose-500"
         />
         <StatCard
-          title="AI Confidence"
-          value="94.8%"
+          title="Forecast Uncertainty"
+          value="Not measured"
           icon={<Activity className="w-4 h-4" style={{ color: isDark ? "#38bdf8" : "#0284c7" }} />}
           iconBg={isDark ? "rgba(56,189,248,0.1)" : "rgba(2,132,199,0.08)"}
-          trend="Model stable"
+          trend="No uncertainty estimate"
           delay="stagger-4"
           theme={theme}
           borderTopColor="border-t-sky-500"

@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsx --test tests/*.test.ts",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
     "start": "tsx src/index.ts",
     "dev": "tsx watch src/index.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "typecheck": "tsc --noEmit",
+    "test:integration": "tsx --test tests/*.integration.ts",
+    "worker": "tsx src/workers/reference.worker.ts",
+    "provision": "tsx src/scripts/provision.ts",
+    "reference": "tsx ../reference-source/server.ts"
   },
   "keywords": [],
   "author": "",

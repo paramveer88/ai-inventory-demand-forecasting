@@ -1,12 +1,10 @@
 import pandas as pd
 import numpy as np
 import time
-from sklearn.linear_model import LinearRegression, Ridge
-from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
-from sklearn.neural_network import MLPRegressor
+from sklearn.linear_model import LinearRegression
 import datetime
 
-# Graceful imports to allow full functionality out of the box, falling back to scikit-learn models
+# Native integrations are optional; unavailable models never impersonate another algorithm.
 try:
     import xgboost as xgb
     XGB_AVAILABLE = True
@@ -50,8 +48,8 @@ def preprocess_lags(df, max_lag=7):
     df_feat['month'] = df_feat['ds'].dt.month
     df_feat['day'] = df_feat['ds'].dt.day
     
-    # Fill NaN from shifting
-    df_feat = df_feat.bfill().fillna(0)
+    # Drop unavailable lag rows; never fill with future values
+    df_feat = df_feat.dropna(subset=[f'lag_{lag}' for lag in range(1, max_lag + 1)])
     return df_feat
 
 
@@ -67,7 +65,7 @@ class ForecastingModelPipeline:
             predictions: List[float]
             metrics: dict of MAE, RMSE, MAPE, R2
             latency_ms: float
-            status: str (active/fallback/simulated)
+            status: str (active; unavailable implementations raise an error)
         """
         start_time = time.time()
         
@@ -78,15 +76,11 @@ class ForecastingModelPipeline:
         train_df = df.iloc[:split_idx].copy()
         val_df = df.iloc[split_idx:].copy()
         
-        try:
-            # Run model implementation
-            pred_val, pred_future = self._run_model(train_df, val_df, df, forecast_horizon)
-            status = self.status
-        except Exception as e:
-            print(f"[{self.model_name}] Execution failed: {e}. Running fallback simulation...")
-            pred_val, pred_future = self._run_fallback(train_df, val_df, df, forecast_horizon)
-            status = "fallback"
-            
+        if self.status == "unavailable":
+            raise RuntimeError(f"{self.model_name} dependency is unavailable")
+        pred_val, pred_future = self._run_model(train_df, val_df, df, forecast_horizon)
+        status = self.status
+
         latency_ms = (time.time() - start_time) * 1000
         
         # Evaluate metrics on validation set
@@ -123,32 +117,6 @@ class ForecastingModelPipeline:
     def _run_model(self, train_df, val_df, full_df, horizon):
         raise NotImplementedError
 
-    def _run_fallback(self, train_df, val_df, full_df, horizon):
-        """High-quality statistical fallback utilizing LinearRegression + noise + seasonality."""
-        # Simple Linear Trend
-        train_df['day_idx'] = np.arange(len(train_df))
-        lr = LinearRegression()
-        lr.fit(train_df[['day_idx']], train_df['y'])
-        
-        # Seasonality
-        val_idx = np.arange(len(train_df), len(train_df) + len(val_df))
-        pred_val = lr.predict(pd.DataFrame({'day_idx': val_idx}))
-        
-        # Add simple sine seasonality to look realistic
-        val_dates = val_df['ds']
-        val_season = np.sin(val_dates.dt.dayofweek * (2 * np.pi / 7.0)) * (train_df['y'].std() * 0.2 + 1)
-        pred_val = np.maximum(0, pred_val + val_season)
-        
-        # Future Predictions
-        future_idx = np.arange(len(full_df), len(full_df) + horizon)
-        pred_future = lr.predict(pd.DataFrame({'day_idx': future_idx}))
-        
-        last_date = full_df['ds'].max()
-        future_dates = pd.Series([(last_date + datetime.timedelta(days=i)) for i in range(1, horizon + 1)])
-        future_season = np.sin(future_dates.dt.dayofweek * (2 * np.pi / 7.0)) * (train_df['y'].std() * 0.2 + 1)
-        pred_future = np.maximum(0, pred_future + future_season)
-        
-        return pred_val, pred_future
 
 
 class LinearRegressionModel(ForecastingModelPipeline):
@@ -182,14 +150,12 @@ class XGBoostModel(ForecastingModelPipeline):
         super().__init__("XGBoost")
         self.info = "Gradient boosted decision trees that model complex non-linear lag correlations and trend factors."
         if not XGB_AVAILABLE:
-            self.status = "simulated"
+            self.status = "unavailable"
 
     def _run_model(self, train_df, val_df, full_df, horizon):
         if not XGB_AVAILABLE:
-            # Fall back to scikit-learn GradientBoostingRegressor as a direct algorithmic equivalent
-            gbr = GradientBoostingRegressor(n_estimators=50, random_state=42)
-            return self._run_tabular_ml(gbr, train_df, val_df, full_df, horizon)
-            
+            raise RuntimeError("XGBoost dependency unavailable")
+
         xgb_reg = xgb.XGBRegressor(n_estimators=50, max_depth=4, learning_rate=0.1, random_state=42)
         return self._run_tabular_ml(xgb_reg, train_df, val_df, full_df, horizon)
 
@@ -203,7 +169,7 @@ class XGBoostModel(ForecastingModelPipeline):
         model.fit(train_feat[features], train_feat['y'])
         
         # Predict validation
-        val_inputs = val_feat.iloc[len(train_df):][features]
+        val_inputs = val_feat.tail(len(val_df))[features]
         pred_val = model.predict(val_inputs)
         
         # Predict future recursively to avoid missing future lags
@@ -240,15 +206,13 @@ class LightGBMModel(ForecastingModelPipeline):
         super().__init__("LightGBM")
         self.info = "Highly efficient histogram-based tree booster designed for scale and multi-lag timeseries forecasting."
         if not LGBM_AVAILABLE:
-            self.status = "simulated"
+            self.status = "unavailable"
 
     def _run_model(self, train_df, val_df, full_df, horizon):
         # We use RandomForestRegressor as a stable algorithmic equivalent if lightgbm is missing
         if not LGBM_AVAILABLE:
-            rfr = RandomForestRegressor(n_estimators=50, max_depth=6, random_state=42)
-            xgb_wrapper = XGBoostModel() # Reuses the recursive feature execution logic
-            return xgb_wrapper._run_tabular_ml(rfr, train_df, val_df, full_df, horizon)
-            
+            raise RuntimeError("LightGBM dependency unavailable")
+
         lgb_reg = lgb.LGBMRegressor(n_estimators=50, max_depth=4, random_state=42, verbose=-1)
         xgb_wrapper = XGBoostModel()
         return xgb_wrapper._run_tabular_ml(lgb_reg, train_df, val_df, full_df, horizon)
@@ -259,13 +223,12 @@ class ProphetModel(ForecastingModelPipeline):
         super().__init__("Prophet")
         self.info = "Meta's additive model capturing holiday effects, trend shifts, and multiple seasonal cycles."
         if not PROPHET_AVAILABLE:
-            self.status = "simulated"
+            self.status = "unavailable"
 
     def _run_model(self, train_df, val_df, full_df, horizon):
         if not PROPHET_AVAILABLE:
-            # Build a Prophet-equivalent additive model using scikit-learn LinearRegression + Fourier terms
-            return self._run_prophet_simulation(train_df, val_df, full_df, horizon)
-            
+            raise RuntimeError("Prophet dependency unavailable")
+
         # Format for Prophet
         prophet_train = train_df[['ds', 'y']].rename(columns={'ds': 'ds', 'y': 'y'})
         model = Prophet(yearly_seasonality=False, weekly_seasonality=True, daily_seasonality=False)
@@ -285,38 +248,6 @@ class ProphetModel(ForecastingModelPipeline):
         
         return pred_val, pred_future
 
-    def _run_prophet_simulation(self, train_df, val_df, full_df, horizon):
-        """Simulates additive models with weekly Fourier features."""
-        def get_features(dates):
-            t = (dates - pd.Timestamp("2026-01-01")).dt.total_seconds() / (24 * 3600)
-            features = pd.DataFrame({
-                'trend': t,
-                'cos_weekly': np.cos(2 * np.pi * t / 7.0),
-                'sin_weekly': np.sin(2 * np.pi * t / 7.0)
-            })
-            return features
-            
-        X_train = get_features(train_df['ds'])
-        y_train = train_df['y']
-        
-        model = Ridge(alpha=1.0)
-        model.fit(X_train, y_train)
-        
-        # Val
-        X_val = get_features(val_df['ds'])
-        pred_val = model.predict(X_val)
-        
-        # Future
-        X_full = get_features(full_df['ds'])
-        model_full = Ridge(alpha=1.0)
-        model_full.fit(X_full, full_df['y'])
-        
-        last_date = full_df['ds'].max()
-        future_dates = pd.Series([last_date + datetime.timedelta(days=i) for i in range(1, horizon + 1)])
-        X_future = get_features(future_dates)
-        pred_future = model_full.predict(X_future)
-        
-        return pred_val, pred_future
 
 
 class LSTMModel(ForecastingModelPipeline):
@@ -324,15 +255,12 @@ class LSTMModel(ForecastingModelPipeline):
         super().__init__("LSTM")
         self.info = "Recurrent neural network capable of learning sequence history and temporal correlations."
         if not TORCH_AVAILABLE:
-            self.status = "simulated"
+            self.status = "unavailable"
 
     def _run_model(self, train_df, val_df, full_df, horizon):
         if not TORCH_AVAILABLE:
-            # Neural network simulation using scikit-learn MLPRegressor
-            mlp = MLPRegressor(hidden_layer_sizes=(32, 16), max_iter=200, random_state=42)
-            xgb_wrapper = XGBoostModel()
-            return xgb_wrapper._run_tabular_ml(mlp, train_df, val_df, full_df, horizon)
-            
+            raise RuntimeError("PyTorch dependency unavailable")
+
         # Pytorch LSTM implementation
         return self._run_pytorch_lstm(train_df, val_df, full_df, horizon)
 
@@ -363,11 +291,8 @@ class LSTMModel(ForecastingModelPipeline):
             return np.array(x), np.array(y)
             
         if len(y_train_scaled) <= window:
-            # Fall back if data series is too short
-            mlp = MLPRegressor(hidden_layer_sizes=(16,), max_iter=100, random_state=42)
-            xgb_wrapper = XGBoostModel()
-            return xgb_wrapper._run_tabular_ml(mlp, train_df, val_df, full_df, horizon)
-            
+            raise ValueError("Insufficient LSTM training history")
+
         X, Y = create_windows(y_train_scaled)
         X_tensor = torch.tensor(X[:, :, np.newaxis], dtype=torch.float32)
         Y_tensor = torch.tensor(Y[:, np.newaxis], dtype=torch.float32)
@@ -427,32 +352,6 @@ class LSTMModel(ForecastingModelPipeline):
         return np.array(pred_val), np.array(pred_future)
 
 
-class TemporalFusionTransformerModel(ForecastingModelPipeline):
-    def __init__(self):
-        super().__init__("TFT")
-        self.info = "Multi-horizon transformer network applying self-attention to align complex dynamic variables."
-        self.status = "simulated"
-
-    def _run_model(self, train_df, val_df, full_df, horizon):
-        # Simulates a TFT's quantile behavior using Quantile Gradient Boosting
-        gbr_median = GradientBoostingRegressor(loss='quantile', alpha=0.5, n_estimators=50, random_state=42)
-        xgb_wrapper = XGBoostModel()
-        return xgb_wrapper._run_tabular_ml(gbr_median, train_df, val_df, full_df, horizon)
-
-
-class TimesFMModel(ForecastingModelPipeline):
-    def __init__(self):
-        super().__init__("TimesFM")
-        self.info = "Google's pre-trained Zero-Shot Time-Series foundation model, forecasting context sequences instantly."
-        self.status = "simulated"
-
-    def _run_model(self, train_df, val_df, full_df, horizon):
-        # Simulates a zero-shot model forecast using a deep autoregressive ridge estimator
-        ridge = Ridge(alpha=10.0)
-        xgb_wrapper = XGBoostModel()
-        return xgb_wrapper._run_tabular_ml(ridge, train_df, val_df, full_df, horizon)
-
-
 # Model Registry helper
 ALL_MODELS = {
     "lr": LinearRegressionModel,
@@ -460,6 +359,4 @@ ALL_MODELS = {
     "lightgbm": LightGBMModel,
     "prophet": ProphetModel,
     "lstm": LSTMModel,
-    "tft": TemporalFusionTransformerModel,
-    "timesfm": TimesFMModel
 }

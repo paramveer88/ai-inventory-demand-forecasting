@@ -594,6 +594,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
               </div>
 
               <div className="dash-body">
+                <p style={{fontSize: 12}}>Illustrative demo data — not measured business results.</p>
                 <div className="segments">
                   {["All SKUs", "Electronics", "Fast Movers"].map((seg) => (
                     <div
@@ -612,9 +613,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                     <div className="big-num">
                       142,058 <small>units</small>
                     </div>
-                    <span className="chip">+18.4%</span>
+                    <span className="chip">Demo</span>
                     <span className="chip-sub">
-                      vs historical 60-day baseline
+                      Illustrative values only
                     </span>
                     <div className="spark">
                       {sparkVals.map((v, idx) => (
@@ -632,7 +633,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                       </div>
                       <div>
                         <p>Stockout Prevention</p>
-                        <b>99.4%</b>
+                        <b>—</b>
                       </div>
                     </div>
                     <div className="dots-grid">
@@ -651,7 +652,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                       </div>
                       <div>
                         <p>ML Accuracy (R²)</p>
-                        <b>96.8%</b>
+                        <b>—</b>
                       </div>
                     </div>
                     <div className="bars">
@@ -669,16 +670,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                 <div className="panels-row">
                   <div className="card">
                     <h4>
-                      Real-Time ML Inference Log{" "}
+                      Illustrative Workflow{" "}
                       <span className="done-badge">OPTIMIZED</span>
                     </h4>
                     <div className="log-line">
-                      <b>[SYS]</b> Zero-filling continuous 60-day sales
-                      history...
+                      <b>[SYS]</b> Preparing a validated daily sales series...
                     </div>
                     <div className="log-line">
-                      <b>[ML]</b> Fitting XGBoost & Prophet on FastAPI. Latency:
-                      0.08ms
+                      <b>[ML]</b> Forecasting runs require eligible data and available models.
                     </div>
                   </div>
 
@@ -687,7 +686,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                     <div className="traj-row">
                       <div>
                         <p>Stockout Risk</p>
-                        <b>0.02%</b>
+                        <b>—</b>
                       </div>
                       <div>
                         <p>Safety Stock Buffer</p>
@@ -695,7 +694,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
                       </div>
                       <div>
                         <p>Confidence Score</p>
-                        <b>99.2%</b>
+                        <b>—</b>
                       </div>
                     </div>
                   </div>

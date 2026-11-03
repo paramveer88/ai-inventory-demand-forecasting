@@ -84,24 +84,7 @@ const MODEL_METADATA: Record<string, ModelInfo> = {
     pros: "Remembers past states over arbitrary sequences, handles temporal relationships.",
     cons: "High compute required, needs massive amounts of historical training rows.",
   },
-  tft: {
-    key: "tft",
-    name: "Temporal Fusion Transformer",
-    color: "#10b981",
-    strokeDash: "6 2",
-    idealFor: "Multi-horizon forecasting with complex static & time-varying variables.",
-    pros: "Interpretable self-attention mechanism, outputs multi-quantile uncertainty bounds.",
-    cons: "Extremely high memory footprint, complex model architecture.",
-  },
-  timesfm: {
-    key: "timesfm",
-    name: "TimesFM (Google Zero-Shot)",
-    color: "#f59e0b",
-    strokeDash: "0",
-    idealFor: "Zero-shot foundation prediction on general timelines without local training.",
-    pros: "Pre-trained on billions of real time-series points, zero local training latency.",
-    cons: "Higher inference latency, requires loading large deep learning weights.",
-  },
+
 };
 
 const ForecastLab = () => {
@@ -118,8 +101,6 @@ const ForecastLab = () => {
     lightgbm: true,
     prophet: true,
     lstm: true,
-    tft: true,
-    timesfm: true,
   });
 
   // Theme Context
@@ -147,10 +128,12 @@ const ForecastLab = () => {
   const handleEvaluate = async () => {
     if (!selectedProductId) return;
     setEvaluating(true);
+    setComparison(null);
     try {
       const res = await getForecastComparison(selectedProductId);
       setComparison(res.data);
     } catch (err) {
+      setComparison(null);
       console.error(err);
     } finally {
       setEvaluating(false);
@@ -288,7 +271,7 @@ const ForecastLab = () => {
         <div className={`card p-8 flex flex-col items-center justify-center space-y-4 border ${isDark ? 'bg-[#141720] border-slate-800' : 'bg-white border-slate-200 shadow-sm'}`}>
           <LoaderThree />
           <p className={`text-sm font-semibold text-center ${isDark ? 'text-slate-450' : 'text-slate-650'}`}>
-            Running predictions across XGBoost, LightGBM, Prophet, LSTM, TFT, and TimesFM. Fitting parameters...
+            Evaluating available native implementations. Missing dependencies are reported as unavailable.
           </p>
         </div>
       )}
@@ -410,7 +393,7 @@ const ForecastLab = () => {
                             {m.model_name}
                           </span>
                           <span className="badge badge-neutral text-[10px] scale-90">
-                            {m.status === "simulated" ? "Simulated Fallback" : m.status}
+                            {m.status}
                           </span>
                         </div>
                         <p className={`text-xs mt-2 leading-relaxed ${isDark ? 'text-slate-350' : 'text-slate-650'}`}>
@@ -446,7 +429,7 @@ const ForecastLab = () => {
                 </h2>
               </div>
               <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                Models ranked by <strong>MAE (Mean Absolute Error)</strong> on validation holdout. Lower values denote higher accuracy.
+                Models ranked by <strong>MAE (Mean Absolute Error)</strong> on the legacy validation holdout. Lag-model validation uses prior observed holdout values; this is not a recursive 30-day benchmark.
               </p>
 
               <div className="space-y-3">
@@ -512,25 +495,10 @@ const ForecastLab = () => {
             </div>
 
             {/* Simulated Fallback Alert (Notice to User) */}
-            {comparison.models.some((m) => m.status === "simulated") && (
-              <div className={`p-4 rounded-xl border flex gap-3 text-xs ${
-                isDark ? 'bg-amber-500/5 border-amber-500/20 text-amber-500' : 'bg-amber-50 border-amber-600/30 text-amber-700'
-              }`}>
-                <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <div className="space-y-1.5">
-                  <strong className="font-bold">Research Run Notice: Environment Fallback</strong>
-                  <p className={`leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Deep learning packages (`torch`, `xgboost`, `lightgbm`, `prophet`) were not fully active in the python env. High-fidelity mathematical forecasting models simulated the output trends dynamically.
-                  </p>
-                  <div className="pt-1">
-                    <span className={`text-[9px] font-bold border px-2 py-0.5 rounded font-mono ${
-                      isDark ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-amber-100 border-amber-500/20 text-amber-800'
-                    }`}>
-                      pip install xgboost lightgbm prophet torch timesfm
-                    </span>
-                  </div>
-                </div>
-              </div>
+            {!!comparison.unavailable_models?.length && (
+              <p role="status" className="rounded border border-amber-500 p-3 text-sm">
+                Unavailable models: {comparison.unavailable_models.map(m => m.model_name).join(", ")}. No substitute predictions or metrics are shown.
+              </p>
             )}
 
             {/* Lead Time & Optimization Recommendations */}
@@ -559,7 +527,7 @@ const ForecastLab = () => {
                 </div>
               </div>
               <p className={`text-[11px] leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-650'}`}>
-                By using <strong>{sortedModels[0]?.model_name || "champion model"}</strong> as the champion model for this product series, replenishment schedules can be optimized to reduce excess safety stock holdings by up to <strong>18.4%</strong> while preserving a <strong>99.9%</strong> service rate.
+                Validation rankings describe this dataset only. Inventory savings and service levels have not been measured.
               </p>
             </div>
 

@@ -1,0 +1,7 @@
+{
+  "records": [
+    {"resource":"product","externalId":"variant-1","revision":1,"occurredAt":"2026-11-01T10:00:00Z","sourceUpdatedAt":"2026-11-01T10:00:00Z","name":"Reference notebook","sku":"DEMO-001"},
+    {"resource":"fulfillment","externalId":"shipment-line-1","externalProductId":"variant-1","revision":1,"occurredAt":"2026-11-02T11:00:00Z","sourceUpdatedAt":"2026-11-02T11:00:00Z","quantity":3},
+    {"resource":"inventory","externalId":"variant-1@default","externalProductId":"variant-1","revision":1,"occurredAt":"2026-11-02T12:00:00Z","sourceUpdatedAt":"2026-11-02T12:00:00Z","quantity":20,"quantityType":"available","location":"default"}
+  ]
+}

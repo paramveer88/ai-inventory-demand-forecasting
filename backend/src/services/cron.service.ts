@@ -8,7 +8,7 @@ const orderService = new OrderService();
 
 export class CronService {
   startJobs() {
-    if (process.env.ENABLE_CRON !== "true") {
+    if (process.env.ENABLE_CRON !== "true" || process.env.ENABLE_LEGACY_DEMO !== "true" || process.env.NODE_ENV === "production") {
       console.log("[Cron] Background jobs are disabled.");
       return;
     }

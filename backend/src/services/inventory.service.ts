@@ -116,7 +116,7 @@ export class InventoryService {
 
       // Step 12: Edge Case - Insufficient history
       if (salesData.filter((s) => s.quantity > 0).length < 5) {
-        return this.getFallbackForecast(productId);
+        throw new Error("Forecast unavailable: insufficient history or ML service unavailable");
       }
 
       // 3. Inference from stateless ML Service
@@ -129,7 +129,7 @@ export class InventoryService {
         forecastData = response.data;
       } catch (e) {
         console.error("[InventoryService] ML Service failed:", e);
-        return this.getFallbackForecast(productId);
+        throw new Error("Forecast unavailable: insufficient history or ML service unavailable");
       }
 
       // 4. Persistence: Create Run and Normalized Forecasts
@@ -167,51 +167,6 @@ export class InventoryService {
       console.error("[InventoryService] Error:", error);
       throw error;
     }
-  }
-
-  private async getFallbackForecast(productId: string) {
-    const run = await (prisma as any).forecastRun.create({
-      data: {
-        productId,
-        modelVersion: "fallback",
-        notes: "Low history fallback",
-      },
-    });
-
-    const tomorrow = new Date();
-    tomorrow.setUTCHours(0, 0, 0, 0);
-    tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
-
-    const fallbackPredictions = Array.from({ length: 30 }, (_, i) => {
-      const d = new Date(tomorrow);
-      d.setUTCDate(tomorrow.getUTCDate() + i);
-      const dStr = d.toISOString().split("T")[0]!;
-      return {
-        date: dStr,
-        value: 5.0,
-      };
-    });
-
-    await (prisma as any).forecast.createMany({
-      data: fallbackPredictions.map((p) => ({
-        productId,
-        forecastRunId: run.id,
-        date: new Date(p.date),
-        predictedDemand: p.value,
-      })),
-    });
-
-    const recommendations = await this.calculateRecommendations(productId, {
-      daily_predictions: fallbackPredictions,
-    });
-
-    return {
-      productId,
-      forecastRunId: run.id,
-      daily_predictions: fallbackPredictions,
-      recommendations,
-      is_fallback: true,
-    };
   }
 
   async getForecastHistory(productId: string) {
@@ -431,63 +386,8 @@ export class InventoryService {
       });
       return response.data;
     } catch (e) {
-      console.error("[InventoryService] ML Compare failed, using high-quality simulation fallback:", e);
-      return this.getMockComparison(productId, salesData);
+      console.error("[InventoryService] ML Compare failed, comparison unavailable:", e);
+      throw new Error("ML comparison unavailable; no simulated metrics are returned");
     }
-  }
-
-  private getMockComparison(productId: string, salesData: any[]) {
-    const models = [
-      { key: "lr", name: "Linear Regression", mae: 5.2, rmse: 6.8, mape: 12.5, r2: 0.15, latency: 1.2, info: "Fits a straight line indicating long-term growth or decline trend." },
-      { key: "xgboost", name: "XGBoost", mae: 3.1, rmse: 4.2, mape: 8.3, r2: 0.65, latency: 15.4, info: "Gradient boosted decision trees that model complex non-linear lag correlations." },
-      { key: "lightgbm", name: "LightGBM", mae: 3.3, rmse: 4.4, mape: 8.8, r2: 0.62, latency: 8.2, info: "Highly efficient histogram-based tree booster designed for scale." },
-      { key: "prophet", name: "Prophet", mae: 2.8, rmse: 3.9, mape: 7.5, r2: 0.71, latency: 125.0, info: "Meta's additive model capturing holiday effects and seasonal cycles." },
-      { key: "lstm", name: "LSTM", mae: 3.5, rmse: 4.7, mape: 9.1, r2: 0.58, latency: 310.5, info: "Recurrent neural network capable of learning sequence history." },
-      { key: "tft", name: "TFT", mae: 2.6, rmse: 3.6, mape: 6.9, r2: 0.74, latency: 450.2, info: "Multi-horizon transformer network applying self-attention." },
-      { key: "timesfm", name: "TimesFM", mae: 2.4, rmse: 3.3, mape: 6.2, r2: 0.78, latency: 680.0, info: "Google's pre-trained Zero-Shot Time-Series foundation model." },
-    ];
-
-    const today = new Date();
-    today.setUTCHours(0, 0, 0, 0);
-
-    const modelResults = models.map((m) => {
-      const preds = Array.from({ length: 30 }, (_, i) => {
-        const d = new Date(today);
-        d.setUTCDate(today.getUTCDate() + i + 1);
-        const dayIdx = i + 60;
-        let baseVal = 15 + Math.sin(dayIdx * (2 * Math.PI / 7)) * 3;
-        if (m.key === "lr") baseVal = 15 + dayIdx * 0.05;
-        else if (m.key === "timesfm") baseVal += Math.sin(dayIdx * (2 * Math.PI / 30)) * 2;
-        
-        const noise = (Math.random() - 0.5) * (m.mae * 0.5);
-        return {
-          date: d.toISOString().split("T")[0]!,
-          value: parseFloat(Math.max(0, baseVal + noise).toFixed(2)),
-        };
-      });
-
-      return {
-        model_key: m.key,
-        model_name: m.name,
-        status: "simulated",
-        info: m.info,
-        next_30_days: parseFloat(preds.reduce((sum, p) => sum + p.value, 0).toFixed(2)),
-        daily_predictions: preds,
-        metrics: {
-          mae: m.mae,
-          rmse: m.rmse,
-          mape: m.mape,
-          r2: m.r2,
-        },
-        latency_ms: m.latency,
-        trend: m.key === "lr" ? "increasing" : "stable",
-      };
-    });
-
-    return {
-      productId,
-      historical_sales: salesData,
-      models: modelResults,
-    };
   }
 }

@@ -93,3 +93,91 @@ model Inventory {
   product      Product   @relation(fields: [productId], references: [id])
 }
 
+
+// Reference integration v1 is isolated from legacy/demo ERP collections.
+model IntegrationBusiness {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  timezone   String
+  apiKeyHash String   @unique
+  createdAt  DateTime @default(now())
+}
+
+model SourceConnection {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  businessId         String    @db.ObjectId
+  adapter            String    @default("reference-v1")
+  createdAt          DateTime  @default(now())
+  lastCollectedAt    DateTime?
+  lastError          String?
+  collectionComplete Boolean   @default(false)
+  @@unique([businessId, adapter])
+}
+
+model SourceInbox {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  businessId      String    @db.ObjectId
+  connectionId    String    @db.ObjectId
+  resource        String
+  externalId      String
+  revision        Int
+  payloadHash     String
+  payload         Json
+  occurredAt      DateTime
+  sourceUpdatedAt DateTime
+  receivedAt      DateTime  @default(now())
+  appliedAt       DateTime?
+  status          String    @default("pending")
+  error           String?
+  attempts        Int       @default(0)
+  leaseToken      String?
+  leaseUntil      DateTime?
+  @@unique([connectionId, resource, externalId, revision])
+  @@index([businessId, connectionId, status])
+}
+
+model SourceProduct {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  businessId      String   @db.ObjectId
+  connectionId    String   @db.ObjectId
+  externalId      String
+  name            String
+  sku             String?
+  revision        Int
+  sourceUpdatedAt DateTime
+  @@unique([connectionId, externalId])
+  @@index([businessId])
+}
+
+model SourceFulfillment {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  businessId        String   @db.ObjectId
+  connectionId      String   @db.ObjectId
+  externalId        String
+  productId         String   @db.ObjectId
+  externalProductId String
+  quantity          Int
+  occurredAt        DateTime
+  sourceUpdatedAt   DateTime
+  appliedAt         DateTime
+  revision          Int
+  @@unique([connectionId, externalId])
+  @@index([businessId, productId, occurredAt])
+}
+
+model SourceStock {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  businessId        String   @db.ObjectId
+  connectionId      String   @db.ObjectId
+  externalId        String
+  productId         String   @db.ObjectId
+  externalProductId String
+  quantity          Int
+  quantityType      String
+  occurredAt        DateTime
+  sourceUpdatedAt   DateTime
+  appliedAt         DateTime
+  revision          Int
+  @@unique([connectionId, externalId])
+  @@index([businessId, productId])
+}

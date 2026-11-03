@@ -1,31 +1,35 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
+from datetime import date, timedelta
 import pandas as pd
-import numpy as np
-import datetime
-import os
 from models import ALL_MODELS
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:5000/api")
+app.add_middleware(CORSMiddleware, allow_origins=[], allow_methods=["POST", "GET"], allow_headers=["*"])
 
 class SalesEntry(BaseModel):
-    date: str
-    quantity: int
+    date: date
+    quantity: int = Field(ge=0)
 
 class ForecastRequest(BaseModel):
-    productId: str
-    salesData: List[SalesEntry]
+    productId: str = Field(min_length=1)
+    salesData: List[SalesEntry] = Field(min_length=16, max_length=3660)
+
+def frame(request):
+    df = pd.DataFrame([{"ds": pd.Timestamp(s.date), "y": s.quantity} for s in request.salesData]).sort_values("ds")
+    if df["ds"].duplicated().any():
+        raise HTTPException(422, "Duplicate sales dates")
+    if not df["ds"].diff().dropna().eq(pd.Timedelta(days=1)).all():
+        raise HTTPException(422, "Supply a complete daily series; missing days are not silently zero-filled")
+    return df.reset_index(drop=True)
+
+def format_result(df, result):
+    dates = [(df["ds"].max() + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(1, 31)]
+    preds = result["predictions"]
+    return {"next_30_days": sum(preds), "daily_predictions": [{"date": d, "value": v} for d, v in zip(dates, preds)],
+            "trend": "increasing" if preds[-1] > preds[0] else "decreasing" if preds[-1] < preds[0] else "stable"}
 
 @app.get("/health")
 def health():
@@ -33,107 +37,30 @@ def health():
 
 @app.post("/ml/forecast")
 def post_forecast(request: ForecastRequest):
-    if not request.salesData:
-        dates = pd.date_range(end=datetime.datetime.now(), periods=60)
-        sales = [10 + (i * 0.1) + np.random.randint(-2, 3) for i in range(60)]
-        df = pd.DataFrame({'ds': dates, 'y': sales})
-    else:
-        df = pd.DataFrame([{"ds": s.date, "y": s.quantity} for s in request.salesData])
-        df['ds'] = pd.to_datetime(df['ds'])
-        df = df.sort_values('ds')
-    
-    # Train Linear Regression model using our pipeline wrapper to keep behaviors consistent
-    lr_model = ALL_MODELS["lr"]()
-    result = lr_model.fit_predict(df, 30)
-    
-    # Format dates
-    last_date = df['ds'].max()
-    future_dates = [(last_date + datetime.timedelta(days=i)).strftime("%Y-%m-%d") for i in range(1, 31)]
-    
-    # Calculate trend slope manually
-    df['day_index'] = np.arange(len(df))
-    from sklearn.linear_model import LinearRegression
-    lr = LinearRegression()
-    lr.fit(df[['day_index']], df['y'])
-    trend = "increasing" if lr.coef_[0] > 0 else "decreasing"
-
-    return {
-        "productId": request.productId,
-        "next_30_days": sum(result["predictions"]),
-        "daily_predictions": [
-            {"date": d, "value": v} for d, v in zip(future_dates, result["predictions"])
-        ],
-        "trend": trend
-    }
+    df = frame(request)
+    try:
+        result = ALL_MODELS["lr"]().fit_predict(df, 30)
+    except Exception as exc:
+        raise HTTPException(503, "Forecast computation unavailable") from exc
+    return {"productId": request.productId, "model_name": "Linear Regression", **format_result(df, result)}
 
 @app.post("/ml/compare")
 def compare_models(request: ForecastRequest):
-    if not request.salesData:
-        dates = pd.date_range(end=datetime.datetime.now(), periods=60)
-        sales = [10 + (i * 0.1) + np.random.randint(-2, 3) for i in range(60)]
-        df = pd.DataFrame({'ds': dates, 'y': sales})
-    else:
-        df = pd.DataFrame([{"ds": s.date, "y": s.quantity} for s in request.salesData])
-        df['ds'] = pd.to_datetime(df['ds'])
-        df = df.sort_values('ds')
-
-    last_date = df['ds'].max()
-    future_dates = [(last_date + datetime.timedelta(days=i)).strftime("%Y-%m-%d") for i in range(1, 31)]
-
-    model_results = []
-    for model_key, model_cls in ALL_MODELS.items():
-        model_instance = model_cls()
-        res = model_instance.fit_predict(df, 30)
-        
-        # Calculate trend based on direction of final forecasts
-        preds = res["predictions"]
-        trend = "increasing" if len(preds) > 1 and preds[-1] >= preds[0] else "decreasing"
-        
-        model_results.append({
-            "model_key": model_key,
-            "model_name": res["model_name"],
-            "status": res["status"],
-            "info": model_instance.info,
-            "next_30_days": sum(preds),
-            "daily_predictions": [
-                {"date": d, "value": v} for d, v in zip(future_dates, preds)
-            ],
-            "metrics": res["metrics"],
-            "latency_ms": res["latency_ms"],
-            "trend": trend
-        })
-
-    # Prepare historical sales to send back to client
-    historical_sales = [{"date": s.date, "quantity": s.quantity} for s in request.salesData]
-
-    return {
-        "productId": request.productId,
-        "historical_sales": historical_sales,
-        "models": model_results
-    }
-
-@app.get("/forecast")
-def get_forecast(productId: str = Query(...)):
-    dates = pd.date_range(end=datetime.datetime.now(), periods=60)
-    sales = [10 + (i * 0.1) + np.random.randint(-2, 3) for i in range(60)]
-    df = pd.DataFrame({'ds': dates, 'y': sales})
-    df['day_index'] = np.arange(len(df))
-    from sklearn.linear_model import LinearRegression
-    model = LinearRegression()
-    X = df[['day_index']]
-    y = df['y']
-    model.fit(X, y)
-    future_indices = pd.DataFrame({'day_index': np.arange(60, 90)})
-    predictions = model.predict(future_indices)
-    predictions = [max(0.0, float(p)) for p in predictions]
-
-    return {
-        "productId": productId,
-        "next_30_days": sum(predictions),
-        "daily_predictions": predictions,
-        "trend": "increasing" if model.coef_[0] > 0 else "decreasing"
-    }
+    df = frame(request)
+    results, unavailable = [], []
+    for key, cls in ALL_MODELS.items():
+        model = cls()
+        try:
+            result = model.fit_predict(df, 30)
+        except Exception:
+            unavailable.append({"model_key": key, "model_name": model.model_name, "status": "unavailable"})
+            continue
+        results.append({"model_key": key, "model_name": result["model_name"], "status": result["status"], "info": model.info,
+                        **format_result(df, result), "metrics": result["metrics"], "latency_ms": result["latency_ms"]})
+    return {"productId": request.productId, "historical_sales": [{"date": s.date.isoformat(), "quantity": s.quantity} for s in request.salesData],
+            "models": results, "unavailable_models": unavailable,
+            "evaluation_protocol": "legacy_chronological_holdout; lag/LSTM validation uses observed prior validation values; not a 30-day recursive benchmark"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

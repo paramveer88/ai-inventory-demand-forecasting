@@ -5,6 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "/api" :
 
 const api = axios.create({
   baseURL: API_URL,
+  timeout: 15000,
 });
 
 export interface Vendor {
@@ -120,6 +121,8 @@ export const getForecastHistory = (productId: string) =>
 export const seedForecastHistory = (days: number = 14) =>
   api.get(`/forecast/seed-history?days=${days}`);
 export interface CompareForecastResult {
+  unavailable_models?: { model_key: string; model_name: string; status: string }[];
+  evaluation_protocol?: string;
   productId: string;
   historical_sales: HistoricalSale[];
   models: {

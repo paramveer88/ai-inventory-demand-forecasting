@@ -13,3 +13,9 @@ reference-source/data/*.json
 !reference-source/data/seed.json
 
 .local/
+
+# Research inputs and immutable local experiment artifacts
+experiments/data/raw/
+experiments/artifacts/
+
+.research-venv/

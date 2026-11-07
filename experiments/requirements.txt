@@ -1,0 +1,5 @@
+# Separate spreadsheet dependency; the application dependency profile is unchanged.
+pandas==3.0.2
+numpy==2.4.4
+openpyxl==3.1.5
+et-xmlfile==2.0.0

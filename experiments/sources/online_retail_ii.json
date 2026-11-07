@@ -1,0 +1,12 @@
+{
+  "source": "UCI Online Retail II",
+  "dataset_id": 502,
+  "landing_page": "https://archive.ics.uci.edu/dataset/502/online%2Bretail%2Bii",
+  "download_url": "https://archive.ics.uci.edu/static/public/502/online%2Bretail%2Bii.zip",
+  "workbook": "online_retail_II.xlsx",
+  "workbook_sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980",
+  "bytes": 45622278,
+  "license": "CC BY 4.0",
+  "citation": "Chen, D. (2012). Online Retail II [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5CG6D",
+  "retrieved_utc_date": "2026-11-07"
+}
